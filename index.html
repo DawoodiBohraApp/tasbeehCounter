@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasbeeh</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            height: 100px;
+           
+        }
+
+        @font-face {
+            font-family: 'digi';
+            src: url("digital.TTF");
+        }
+
+        #texture {
+            float: left;
+            position: relative;
+
+            
+
+        }
+
+        #bodyc {
+            position: absolute;
+            left: 50px;
+            top: 170px;
+        }
+
+        #count {
+            position: absolute;
+            left: 164px;
+            top: 445px;
+        }
+
+        #count:active {
+            width: 150px;
+            left: 164px;
+        }
+
+        #reset {
+            position: absolute;
+            left: 107px;
+            top: 396px;
+        }
+
+        #reset:active {
+            top: 398px;
+            left: 109px;
+            width: 42px;
+        }
+
+        #vibrate {
+            position: absolute;
+            left: 325px;
+            top: 396px;
+        }
+
+        #vibrate:active {
+            top: 398px;
+            left: 327px;
+            width: 42px;
+        }
+
+        h1 {
+            position: relative;
+            left: 180px;
+            bottom: 730px;
+            font-size: 70px;
+            font-family: 'digi';
+            text-align: right;
+            width: 100px;
+            margin: 0px;
+            padding: 0px;
+
+        }
+        #night{
+            position: absolute;
+            left: 97px;
+            top: 235px;
+            display: none;
+        }
+        #backtex{
+            float: left;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            display: none;
+
+        }
+        #dark{
+            float: left;
+            position: absolute;
+            top: 150px;
+            width: 40px;
+            left: 400px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    
+
+        <img id="texture" src="tasbeeh2.jpg" alt="texture">
+        <img id="bodyc" src="body_10.png" alt="">
+        <img id="backtex" src="backnight.png" alt="texture">
+        <img id="night" src="nightmode.png" alt="">
+        <h1 id="counting">0</h1>
+        <img onclick="btn()" id="count" src="count.png" alt="">
+        <img onclick="btnrst()" id="reset" src="reset.png" alt="">
+        <img onclick="vibr()" id="vibrate" src="reset.png" alt="">
+        <img onclick="darkm()" id="dark" src="dark2.png" alt="">
+
+    <script>
+        let count = localStorage.getItem('digits');
+        let vibrate = 0;
+
+
+
+        window.onload = function () {
+            let a = document.getElementById('counting')
+
+            a.innerHTML = count;
+        }
+        function btn() {
+            if (vibrate == 1) {
+                navigator.vibrate(75);
+            }
+            count++;
+            localStorage.setItem('digits', count)
+
+            let d = localStorage.getItem('digits');
+            let a = document.getElementById('counting')
+
+            a.innerHTML = d;
+
+            
+          
+        }
+        function btnrst() {
+            let c = confirm("Are You Sure You Want to Reset?")
+
+            
+            if (c == true) {
+                count = 0;
+                let a = document.getElementById('counting')
+                a.innerHTML = count;
+                localStorage.clear();
+
+            }
+        }
+
+        function vibr() {
+
+            if (vibrate != 1) {
+                vibrate = 1;
+                console.log(vibrate)
+            } else {
+                vibrate = 0;
+                // console.log(vibrate)
+            }
+
+        }
+        function darkm() {
+            let darkb = document.getElementById("backtex");
+            let darkn = document.getElementById("night") 
+            if(darkb.style.display != 'block'){
+            darkb.style.display = 'block'
+            darkn.style.display = 'block'
+            }else if(darkn.style.display = 'block'){
+                darkb.style.display = 'none'
+            darkn.style.display = 'none'
+            }
+            
+        }
+
+
+
+
+
+    </script>
+    
+</body>
+
+</html>
